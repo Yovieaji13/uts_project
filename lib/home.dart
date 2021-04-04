@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:uts_project/dbhelper.dart';
 import 'package:uts_project/entryform.dart';
-import 'item.dart'; //pendukung program asinkron
+import 'item.dart';//pendukung program asinkron
 
 class Home extends StatefulWidget {
   @override
@@ -11,9 +11,17 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+
   DbHelper dbHelper = DbHelper();
   int count = 0;
   List<Item> itemList;
+  
+  @override
+  void initState() {
+    super.initState();
+    updateListView();
+  }
+  
   @override
   Widget build(BuildContext context) {
     if (itemList == null) {
@@ -21,7 +29,7 @@ class HomeState extends State<Home> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar Item'),
+        title: Text('Stock Morfeen Store Sukun'),
       ),
       body: Column(children: [
         Expanded(
@@ -30,9 +38,11 @@ class HomeState extends State<Home> {
         Container(
           alignment: Alignment.bottomCenter,
           child: SizedBox(
+            height: 50,
             width: double.infinity,
             child: RaisedButton(
-              child: Text("Tambah Item"),
+              color: Colors.blueGrey,
+              child: Text("Input Stock", style: TextStyle(color: Colors.white),),
               onPressed: () async {
                 var item = await navigateToEntryForm(context, null);
                 if (item != null) {
@@ -68,24 +78,32 @@ class HomeState extends State<Home> {
           elevation: 2.0,
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.red,
+              backgroundColor: Colors.blue,
               child: Icon(Icons.ad_units),
             ),
             title: Text(
-              this.itemList[index].name,
-              style: textStyle,
+              this.itemList[index].code,
+              style: textStyle
             ),
             subtitle: Text(this.itemList[index].price.toString()),
             trailing: GestureDetector(
               child: Icon(Icons.delete),
               onTap: () async {
                 //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
+                int result = await dbHelper.delete(this.itemList[index].id);
+                if(result > 0){
+                  updateListView();
+                }
               },
             ),
             onTap: () async {
               var item =
                   await navigateToEntryForm(context, this.itemList[index]);
               //TODO 4 Panggil Fungsi untuk Edit data
+              int result = await dbHelper.update(item);
+              if(result > 0){
+                updateListView();
+              }
             },
           ),
         );

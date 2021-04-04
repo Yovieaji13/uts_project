@@ -118,7 +118,7 @@
 
 //kode utama Aplikasi tampilan awal
 import 'package:flutter/material.dart';
-import 'home.dart'; //package letak folder Anda
+import 'package:uts_project/loginpage.dart';//package letak folder Anda
 
 void main() => runApp(MyApp());
 
@@ -127,11 +127,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Tambahkan Item',
+      title: 'Tambahkan item',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: Home(),
+      home: LoginPage(),
     );
   }
 }

@@ -14,12 +14,16 @@ class EntryFormState extends State<EntryForm> {
   EntryFormState(this.item);
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
+  TextEditingController codeController = TextEditingController();
+  TextEditingController colorController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     //kondisi
     if (item != null) {
       nameController.text = item.name;
       priceController.text = item.price.toString();
+      codeController.text = item.code;
+      colorController.text = item.color;
     }
     //rubah
     return Scaffold(
@@ -65,6 +69,41 @@ class EntryFormState extends State<EntryForm> {
                   },
                 ),
               ),
+
+              //code
+               Padding(
+                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                child: TextField(
+                  controller: codeController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: 'Code',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    //
+                  },
+                ),
+              ),
+              //color
+               Padding(
+                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                child: TextField(
+                  controller: colorController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: 'Color',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    //
+                  },
+                ),
+              ),
               // tombol button
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
@@ -83,11 +122,15 @@ class EntryFormState extends State<EntryForm> {
                           if (item == null) {
                             // tambah data
                             item = Item(nameController.text,
-                                int.parse(priceController.text));
+                                int.parse(priceController.text),
+                                codeController.text, 
+                                colorController.text);
                           } else {
                             // ubah data
                             item.name = nameController.text;
                             item.price = int.parse(priceController.text);
+                            item.code = codeController.text;
+                            item.color = colorController.text;
                           }
                           // kembali ke layar sebelumnya dengan membawa objek item
                           Navigator.pop(context, item);
