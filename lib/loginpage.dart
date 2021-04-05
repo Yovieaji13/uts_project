@@ -6,7 +6,6 @@ import 'package:uts_project/login.dart';
 
 class LoginPage extends StatefulWidget {
   static  final String id = 'loginpage';
-  final DateTime timestamp = DateTime.now();
   Login currentUser;
 
   @override
@@ -30,7 +29,7 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[300],
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height * 1,
@@ -39,12 +38,18 @@ class LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              // Container(
-              //   padding: EdgeInsets.all(50),
-              //   child: Image.asset(
-
-              //   ),
-              // ),
+              Container(
+                padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
+                child: Text(
+                  'Welcome To Aplikasi Stock Morfeen ', style: TextStyle(color: Colors.white, fontSize:20,),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(30),
+                child: Image(
+                  image: NetworkImage('https://scontent-cgk1-1.xx.fbcdn.net/v/t1.6435-9/104438863_3351848721706094_7197417179988458720_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=AJUTwes14LYAX_GEXn_&_nc_ht=scontent-cgk1-1.xx&oh=5a0fcd1ca7d47831e2cb8eb26e65caf1&oe=608F2152'),
+                ),
+              ),
               _formBuilder(),
             ],
           ),
@@ -65,8 +70,8 @@ class LoginPageState extends State<LoginPage> {
               controller: usernameController,
               keyboardType: TextInputType.emailAddress,
               style: TextStyle(color: Colors.white),
-              validator: (value) {
-                return value.isEmpty ? "Username Tidak Boleh Kosong" : null;
+              validator: (username) {
+                return username.isEmpty ? "*Mohon diisi" : null;
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -83,13 +88,13 @@ class LoginPageState extends State<LoginPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
             child: TextFormField(
               controller: passwordController,
               obscureText: true,
               style: TextStyle(color: Colors.white),
-              validator: (value) {
-                return value.isEmpty ? "Password Tidak Boleh Kosong" : null;
+              validator: (password) {
+                return password.isEmpty ? "*Mohon diisi" : null;
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -136,7 +141,7 @@ class LoginPageState extends State<LoginPage> {
               child: Center(
                 child: Text(
                   'Login',
-                  style: TextStyle(fontSize: 24, color: Colors.blue[300]),
+                  style: TextStyle(fontSize: 24, color: Colors.blueGrey),
                 ),
               ),
             ),
@@ -145,7 +150,7 @@ class LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.all(10),
             child: FlatButton(
               child: Text(
-                'Buat akun',
+                'Registrasi',
                 style: TextStyle(
                     fontSize: 13,
                     color: Colors.white,

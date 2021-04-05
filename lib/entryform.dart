@@ -28,7 +28,8 @@ class EntryFormState extends State<EntryForm> {
     //rubah
     return Scaffold(
         appBar: AppBar(
-          title: item == null ? Text('Tambah') : Text('Ubah'),
+          backgroundColor: Colors.black,
+          title: item == null ? Text('Input Stock') : Text('Update Stock'),
           leading: Icon(Icons.keyboard_arrow_left),
         ),
         body: Padding(
@@ -42,7 +43,7 @@ class EntryFormState extends State<EntryForm> {
                   controller: nameController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                    labelText: 'Nama Barang',
+                    labelText: 'Item',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -112,10 +113,10 @@ class EntryFormState extends State<EntryForm> {
                     // tombol simpan
                     Expanded(
                       child: RaisedButton(
-                        color: Theme.of(context).primaryColorDark,
+                        color: Colors.black,
                         textColor: Theme.of(context).primaryColorLight,
                         child: Text(
-                          'Save',
+                          'Input',
                           textScaleFactor: 1.5,
                         ),
                         onPressed: () {
@@ -143,7 +144,7 @@ class EntryFormState extends State<EntryForm> {
                     // tombol batal
                     Expanded(
                       child: RaisedButton(
-                        color: Theme.of(context).primaryColorDark,
+                        color: Colors.black,
                         textColor: Theme.of(context).primaryColorLight,
                         child: Text(
                           'Cancel',

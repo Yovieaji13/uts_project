@@ -80,25 +80,10 @@ class DbHelper {
     return count;
   } 
   
-  //update databases login
-  Future<int> updateLogin(Item object) async {
-    Database db = await this.initDb();
-    int count = await db
-        .update('login', object.toMap(), where: 'id=?', whereArgs: [object.id]);
-    return count;
-  } 
-  
   //delete databases item
   Future<int> delete(int id) async {
     Database db = await this.initDb();
     int count = await db.delete('item', where: 'id=?', whereArgs: [id]);
-    return count;
-  }
-
-  //delete databases login
-  Future<int> deleteLogin(int id) async {
-    Database db = await this.initDb();
-    int count = await db.delete('login', where: 'id=?', whereArgs: [id]);
     return count;
   }
 

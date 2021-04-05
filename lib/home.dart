@@ -29,7 +29,8 @@ class HomeState extends State<Home> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stock Morfeen Store Sukun'),
+        backgroundColor: Colors.black,
+        title: Text('Stock Morfeen'),
       ),
       body: Column(children: [
         Expanded(
@@ -41,7 +42,7 @@ class HomeState extends State<Home> {
             height: 50,
             width: double.infinity,
             child: RaisedButton(
-              color: Colors.blueGrey,
+              color: Colors.black,
               child: Text("Input Stock", style: TextStyle(color: Colors.white),),
               onPressed: () async {
                 var item = await navigateToEntryForm(context, null);
@@ -78,14 +79,14 @@ class HomeState extends State<Home> {
           elevation: 2.0,
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.blue,
-              child: Icon(Icons.ad_units),
+              backgroundColor: Colors.black,
+              child: Icon(Icons.folder),
             ),
             title: Text(
-              this.itemList[index].code,
+              this.itemList[index].name,
               style: textStyle
             ),
-            subtitle: Text(this.itemList[index].price.toString()),
+            subtitle: Text(this.itemList[index].code),
             trailing: GestureDetector(
               child: Icon(Icons.delete),
               onTap: () async {
